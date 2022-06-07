@@ -261,6 +261,14 @@ on enable-low-power
 
 on property:sys.boot_completed=1
     trigger enable-low-power
+    stop boot_lc
+    stop boot_lc_crash
+    stop boot_lc_kernel
+
+on property:dev.bootcomplete=1
+    stop boot_lc
+    stop boot_lc_crash
+    stop boot_lc_kernel
 
 # If UART is on, enable console_suspend on boot_complete to save power
 on property:sys.boot_completed=1 && property:init.svc.console=running
